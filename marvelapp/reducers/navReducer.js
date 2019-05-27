@@ -1,10 +1,38 @@
-import { createNavigationReducer } from 'react-navigation-redux-helpers';
+import { NavigationActions } from 'react-navigation';
 import { RootNavigator } from '../components/AppNavigator';
 
-/* 
-The Navigation Reducer is autamatically made with the createNavigationReducer
-function. The reducer depends on the RootNavigator you pass in.
-*/
-const navReducer = createNavigationReducer(RootNavigator);
+const firstAction = RootNavigator.router.getActionForPathAndParams('Home');
+const tempNavState = RootNavigator.router.getStateForAction(firstAction);
+const initialNavState = RootNavigator.router.getStateForAction(tempNavState);
 
-export default navReducer;
+const NavReducer = (state = initialNavState, action) => {
+    let nextState;
+    switch (action.type) {
+        case 'Home':
+            nextState = RootNavigator.router.getStateForAction(
+                NavigationActions.navigate({ routeName: 'Home' }),
+                state
+            );
+            break;
+        case 'CharacterComics':
+            nextState = RootNavigator.router.getStateForAction(
+                NavigationActions.navigate({ routeName: 'CharacterComics' }),
+                state
+            );
+            break;
+        case 'ComicDetails':
+            nextState = RootNavigator.router.getStateForAction(
+                NavigationActions.navigate({ routeName: 'ComicDetails' }),
+                state
+            );
+            break;
+        default:
+            nextState = RootNavigator.router.getStateForAction(action, state);
+            break;
+    }
+
+    // Simply return the original `state` if `nextState` is null or undefined.
+    return nextState || state;
+}
+
+export default NavReducer;
