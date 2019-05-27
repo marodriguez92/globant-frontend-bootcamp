@@ -1,12 +1,33 @@
-import React from 'react';
-import { View, Text } from 'react-native';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import fetchCharacterComics from '../actions';
+import CharacterComicsList from '../components/CharacterComicsList/CharacterComicsList';
 
-const CharacterComicsScreen = () => {
-    return (
-        <View>
-            <Text> Character Comics Screen </Text>
-        </View>
-    )
+class CharacterComicsScreen extends Component {
+    
+    componentWillMount() {
+        this.props.fetchCharacterComics('1011334');
+    }
+
+    render() {
+        return (
+            <CharacterComicsList 
+                navigation={this.props.navigation} 
+                isFetching={this.props.isFetching}
+                characterComics={this.props.characterComics}
+            />
+        )
+    }
 }
 
-export default CharacterComicsScreen;
+const mapStateToProps = (state) => ({
+    isFetching: state.dataReducer.isFetching,
+    characterComics: state.dataReducer.characterComics
+});
+
+const mapDispatchToProps = (dispatch) => ({
+    fetchCharacterComics: (characterID) =>
+        dispatch(fetchCharacterComics(characterID))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(CharacterComicsScreen);

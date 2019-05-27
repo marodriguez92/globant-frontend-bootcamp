@@ -1,0 +1,2 @@
+export const REQUEST_COMICS = 'REQUEST_COMICS';
+export const RECEIVE_COMICS = 'RECEIVED_COMICS';

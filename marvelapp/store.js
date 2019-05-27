@@ -1,13 +1,8 @@
 import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
 import AppReducer from './reducers';
-import { createReactNavigationReduxMiddleware } from 'react-navigation-redux-helpers';
+import { middleware } from './components/AppNavigator';
 
-// Middleware for the React Navigation with Redux implementation. 
-const middleware = createReactNavigationReduxMiddleware(
-    state => state.nav,
-);
-
-// Create the store
-const store = createStore(AppReducer, applyMiddleware(middleware));
+const store = createStore(AppReducer, applyMiddleware(middleware, thunk));
  
 export default store;

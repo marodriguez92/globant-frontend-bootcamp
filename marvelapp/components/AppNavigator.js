@@ -1,9 +1,14 @@
-import { createStackNavigator, createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation';
 import routes from '../config/routes';
 import {
-    createReduxContainer
+    createReduxContainer, 
+    createReactNavigationReduxMiddleware
 } from 'react-navigation-redux-helpers';
 import { connect } from 'react-redux';
+
+const middleware = createReactNavigationReduxMiddleware(
+    state => state.nav
+);
 
 // Creates a stack navigator with specified routes. 
 const RootNavigator = createStackNavigator(routes);
@@ -23,4 +28,4 @@ const mapStateToProps = (state) => ({
 // Make the connection required from 'react-redux'. 
 const AppNavigator = connect(mapStateToProps)(AppWithNavigationState);
 
-export {RootNavigator, AppNavigator};
+export {RootNavigator, AppNavigator, middleware};

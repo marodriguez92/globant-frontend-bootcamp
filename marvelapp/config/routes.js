@@ -5,7 +5,7 @@ import ComicDetailsScreen from '../screens/ComicDetailsScreen';
 const routes = {
     Home: { screen: HomeScreen },
     CharacterComics: { screen: CharacterComicsScreen },
-    ComicDetailsScreen: { screen: ComicDetailsScreen }
+    ComicDetails: { screen: ComicDetailsScreen }
 }
 
 export default routes;
