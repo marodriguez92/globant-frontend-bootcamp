@@ -16,13 +16,13 @@ const NavReducer = (state = initialNavState, action) => {
             break;
         case 'CharacterComics':
             nextState = RootNavigator.router.getStateForAction(
-                NavigationActions.navigate({ routeName: 'CharacterComics' }),
+                NavigationActions.navigate({ routeName: 'CharacterComics', params: action.payload }),
                 state
             );
             break;
         case 'ComicDetails':
             nextState = RootNavigator.router.getStateForAction(
-                NavigationActions.navigate({ routeName: 'ComicDetails' }),
+                NavigationActions.navigate({ routeName: 'ComicDetails', params: action.payload }),
                 state
             );
             break;
@@ -30,8 +30,6 @@ const NavReducer = (state = initialNavState, action) => {
             nextState = RootNavigator.router.getStateForAction(action, state);
             break;
     }
-
-    // Simply return the original `state` if `nextState` is null or undefined.
     return nextState || state;
 }
 

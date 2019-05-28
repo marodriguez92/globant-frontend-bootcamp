@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import fetchCharacterComics from '../actions';
+import * as Actions from '../actions';
+import { bindActionCreators } from 'redux';
 import CharacterComicsList from '../components/CharacterComicsList/CharacterComicsList';
 
 class CharacterComicsScreen extends Component {
-    
     componentWillMount() {
-        this.props.fetchCharacterComics('1011334');
+        this.props.fetchCharacterComics(this.props.navigation.getParam('id'));
     }
 
     render() {
@@ -25,9 +25,8 @@ const mapStateToProps = (state) => ({
     characterComics: state.dataReducer.characterComics
 });
 
-const mapDispatchToProps = (dispatch) => ({
-    fetchCharacterComics: (characterID) =>
-        dispatch(fetchCharacterComics(characterID))
-});
+const mapDispatchToProps = (dispatch) => (
+    bindActionCreators(Actions, dispatch)
+  );
 
 export default connect(mapStateToProps, mapDispatchToProps)(CharacterComicsScreen);
