@@ -1,19 +1,22 @@
 import React from 'react';
 import {
   View,
-  TouchableOpacity,
-  FlatList,
+   FlatList,
   ActivityIndicator
 } from 'react-native';
 import styles from './styles';
 import CharacterItem from '../CharacterItem'
 
-const renderItem = ({ item }) => (
+const renderItem = ({item}, navigation ) => (
   <CharacterItem
     name={item.name}
     description={item.description}
     img={item.thumbnail.path}
-    extension={item.thumbnail.extension} />
+    extension={item.thumbnail.extension} 
+    onPress={()=>{      
+      navigation.dispatch({type: 'CharacterComics', payload: {id: item.id} })
+    }}
+  />
 )
 
 const renderFooter = () => (
@@ -26,21 +29,17 @@ const renderSeparator = () => (
   <View style={styles.separator} />
 )
 
-export const CharacterList = (props) => (
+const CharacterList = (props) => (
   <View style={styles.container}>
-    <TouchableOpacity onPress={() => props.navigation.navigate('CharacterComics')}>
       <FlatList
         data={props.characters}
-        renderItem={renderItem}
+        renderItem={(item)=>(
+          renderItem(item, props.navigation)
+        )}
         keyExtractor={(item) => item.id.toString()}
         ItemSeparatorComponent={renderSeparator}
       />
-    </TouchableOpacity>
   </View>
 )
-
-
-
-
 
 export default CharacterList
