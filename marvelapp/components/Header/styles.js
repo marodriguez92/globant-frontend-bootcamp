@@ -9,11 +9,12 @@ const styles = StyleSheet.create({
         alignItems: 'flex-end'
     },
     headerTitle: {
-        fontFamily: 'marvel-bold',
         color: 'white',
-        fontSize: 110,
-        letterSpacing: -10,
+        fontSize: 85,
+        letterSpacing: -5,
+        fontWeight: '900',
         includeFontPadding: false,
+        transform: [{ scaleY: 1.4 }]
     }
   });
   
