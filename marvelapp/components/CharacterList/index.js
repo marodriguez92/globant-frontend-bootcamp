@@ -14,7 +14,15 @@ const renderItem = ({item}, navigation ) => (
     img={item.thumbnail.path}
     extension={item.thumbnail.extension} 
     onPress={()=>{      
-      navigation.dispatch({type: 'CharacterComics', payload: {id: item.id} })
+      navigation.dispatch(
+        {
+          type: 'CharacterComics', 
+          payload: {
+            characterId: item.id, 
+            characterName: item.name
+          } 
+        }
+      )
     }}
   />
 )

@@ -2,7 +2,7 @@ import React from 'react';
 import {
     View,
     FlatList,
-    ActivityIndicator,
+    ActivityIndicator
 } from 'react-native';
 import ComicItem from '../ComicItem/ComicItem';
 import styles from './styles';
@@ -11,7 +11,7 @@ const CharacterComicsList = ({ navigation, isFetching, characterComics }) => {
     if (isFetching) {
         return (
             <View style={styles.activityIndicatorContainer}>
-                <ActivityIndicator animating={true} />
+                <ActivityIndicator animating={true} size="large"/>
             </View>
         );
     } else {
@@ -20,7 +20,7 @@ const CharacterComicsList = ({ navigation, isFetching, characterComics }) => {
                 <FlatList
                     data={characterComics}
                     renderItem={({ item }) => (
-                        <ComicItem 
+                        <ComicItem
                             navigation={navigation}
                             comicUrl={`${item.thumbnail.path}.${item.thumbnail.extension}`}
                         />

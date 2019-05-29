@@ -4,7 +4,6 @@ const credentials = 'ts=thesoer&apikey=bc633c3098498c482c783ac62a84c855&hash=802
 
 export const fetchCharacterComics = (characterID) => (dispatch) => {
     // Start the request. 
-    console.log(types)
     dispatch({type: types.REQUEST_COMICS});
 
     fetch(`https://gateway.marvel.com:443/v1/public/characters/${characterID}/comics?${credentials}`)
@@ -29,5 +28,5 @@ export const fetchCharacters = () => (dispatch) => {
         type: types.RECEIVE_CHARACTERS,
         payload: data.data.results
       }))
-  }
+}
   
