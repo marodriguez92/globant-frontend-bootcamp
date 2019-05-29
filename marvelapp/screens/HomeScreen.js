@@ -1,8 +1,9 @@
-import React from 'react'
-import CharactersList from '../components/CharacterList'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import * as Actions from '../actions'
+import React from 'react';
+import CharactersList from '../components/CharacterList';
+import Header from '../components/Header';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as Actions from '../actions';
 import {
   View,
   ActivityIndicator
@@ -15,17 +16,23 @@ class HomeScreen extends React.Component {
   render() {
     if (this.props.isFetching) {
       return (
-        <View style={{ paddingVertical: 20, borderTopWitdh: 1, borderTopColor: '#CED0CE' }}>
-          <ActivityIndicator animating size="large" />
+        <View style={{ flex: 1 }}>
+          <Header />
+          <View style={{ paddingVertical: 20, borderTopWitdh: 1, borderTopColor: '#CED0CE' }}>
+            <ActivityIndicator animating size="large" />
+          </View>
         </View>
       )
     } else {
       return (
-        <CharactersList
-          navigation={this.props.navigation}
-          characters={this.props.characters}
-          isFetching={this.props.isFetching}
-        />
+        <View style={{ flex: 1 }}>
+          <Header />
+          <CharactersList
+            navigation={this.props.navigation}
+            characters={this.props.characters}
+            isFetching={this.props.isFetching}
+          />
+        </View>
       )
     }
   }
