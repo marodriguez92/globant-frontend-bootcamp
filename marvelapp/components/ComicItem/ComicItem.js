@@ -6,11 +6,11 @@ import {
 } from 'react-native';
 import styles from './styles';
 
-const ComicItem = ({ navigation, comicUrl }) => {
+const ComicItem = ({ handleNavigate, comicUrl, id }) => {
     return (
         <View>
             <TouchableOpacity
-                onPress={() => navigation.dispatch({ type: 'ComicDetails' })}
+                onPress={() => handleNavigate(id)}
             >
                 <Image
                     style={styles.comicItem}

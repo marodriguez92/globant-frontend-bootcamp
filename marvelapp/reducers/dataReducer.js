@@ -1,11 +1,15 @@
 import types from '../actions/types';
 
 const initialState = {
-  isFetching: false,
-  characterComics: [],
-  characters: [],
-  charactersSearch: [],
-  isFetchingMoreCharacters: false
+    isFetching: false,
+    characterComics: [],
+    characters: [],
+    charactersSearch: [],
+    isFetchingMoreCharacters: false,
+    comic: {
+        comicData: {},
+        characters: [],
+    },
 }
 
 const dataReducer = (state = initialState, action) => {
@@ -60,7 +64,40 @@ const dataReducer = (state = initialState, action) => {
         ...state,
         charactersSearch:[]
       }
-
+      case types.COMIC_START_LOAD:
+            return {
+                    ...state,
+                    isFetching: true,
+                    comic: {
+                        ...state.comic,
+                    },
+            }      
+        case types.COMIC_FINISH_LOAD:
+            return {
+                ...state,
+                comic: {
+                    ...state.comic,
+                    comicData: action.payload.data.results[0]
+                },
+                isFetching: false,
+            }
+        case types.COMIC_CHARACTERS_START:
+            return {
+                    ...state,
+                    isFetchingMoreCharacters: true,
+                    comic: {
+                        ...state.comic,
+                    },
+            }      
+        case types.COMIC_CHARACTERS_FINISH:
+            return {
+                ...state,
+                comic: {
+                    ...state.comic,
+                    characters: action.payload.data.results
+                },
+                isFetchingMoreCharacters: false,
+              }
     default:
       return state
   }

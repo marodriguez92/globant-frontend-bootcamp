@@ -7,7 +7,7 @@ import SearchBox from '../Search'
 const SubHeader = ({ navigation, title, subtitle, handleSearch, charactersSearch, searchValue, handleClear, renderSearchBar }) => {
 
   const dataInfo = () => (
-    <View>
+    <View style={styles.subHeader}>
       <HeaderBackButton style={{ flex: 0.2 }} tintColor={'#ccc'} onPress={() => { navigation.goBack() }} />
       <View style={{ flex: 0.8 }}>
         <Text style={styles.subHeaderTitle}> {title} </Text>
@@ -16,19 +16,19 @@ const SubHeader = ({ navigation, title, subtitle, handleSearch, charactersSearch
     </View>
   )
   const search = () => (
-    <SearchBox
-      navigation={navigation}
-      onHandleSearch={handleSearch}
-      charactersSearch={charactersSearch}
-      searchValue={searchValue}
-      onHandleClear={handleClear}
-    />
-  )
-  return (
     <View style={styles.subHeader}>
-      {renderSearchBar ? search():dataInfo()}
+      <SearchBox
+        navigation={navigation}
+        onHandleSearch={handleSearch}
+        charactersSearch={charactersSearch}
+        searchValue={searchValue}
+        onHandleClear={handleClear}
+      />
     </View>
   )
+  
+  return renderSearchBar ? search() : dataInfo();
+
 }
 
 SubHeader.defaultProps={

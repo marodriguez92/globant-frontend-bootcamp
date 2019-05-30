@@ -5,13 +5,13 @@ import * as Actions from '../actions';
 import { bindActionCreators } from 'redux';
 import CharacterComicsList from '../components/CharacterComicsList/CharacterComicsList';
 import Header from '../components/Header';
-import SubHeader from '../components/SubHeader';
 
 class CharacterComicsScreen extends Component {
-  componentWillMount() {
-    this.props.fetchCharacterComics(this.props.navigation.getParam('characterId'));
+  handleNavigate = (comicId) => {
+    this.props.getComic(comicId);
+    this.props.getComicCharacters(comicId);
+    this.props.navigation.dispatch({ type: 'ComicDetails' })
   }
-
   render() {
     return (
       <View style={{ flex: 1 }}>
@@ -20,9 +20,8 @@ class CharacterComicsScreen extends Component {
           title={this.props.navigation.getParam('characterName')}
           subtitle={'Comics List'}
         />
-
         <CharacterComicsList
-          navigation={this.props.navigation}
+          handleNavigate={this.handleNavigate}
           isFetching={this.props.isFetching}
           characterComics={this.props.characterComics}
         />
@@ -32,8 +31,8 @@ class CharacterComicsScreen extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  isFetching: state.dataReducer.isFetching,
-  characterComics: state.dataReducer.characterComics
+    isFetching: state.DataReducer.isFetching,
+    characterComics: state.DataReducer.characterComics
 });
 
 const mapDispatchToProps = (dispatch) => (

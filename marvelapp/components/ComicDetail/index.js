@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import styles from './style'
+import styles from './style';
 
 const renderDetail = (title, content) => {
     const newContent = Array.isArray(content) ? content.map( writer => writer.name ).join(', ') : content;

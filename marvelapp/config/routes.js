@@ -1,6 +1,6 @@
 import HomeScreen from '../screens/HomeScreen';
 import CharacterComicsScreen from '../screens/CharacterComicsScreen';
-import ComicDetailsScreen from '../screens/ComicDetailsScreen';
+import ComicDetailsScreen from '../screens/ComicDetailScreen';
 
 const routes = {
     Home: { 
@@ -15,7 +15,12 @@ const routes = {
             header: null
         }
     },
-    ComicDetails: { screen: ComicDetailsScreen }
+    ComicDetails: { 
+        screen: ComicDetailsScreen,
+        navigationOptions: {
+            header: null
+        }
+    }
 }
 
 export default routes;

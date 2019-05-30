@@ -1,7 +1,20 @@
 import types from './types';
 
 const credentials = 'ts=thesoer&apikey=bc633c3098498c482c783ac62a84c855&hash=802bad3d59d5bdef698ed9e3da658526';
+const buildURL = endPoint => 
+    `https://gateway.marvel.com/v1/public/${endPoint}?ts=thesoer&apikey=bc633c3098498c482c783ac62a84c855&hash=802bad3d59d5bdef698ed9e3da658526`
+    
 
+
+const getData = (url, callback) => {
+        fetch(url)
+            .then((response) => response.json())
+            .then((responseJson) => {
+                callback(responseJson);
+            }).catch((error) => {
+                console.log(error);
+            });
+}
 export const fetchCharacterComics = (characterID) => (dispatch) => {
   // Start the request. 
   console.log(types)
@@ -68,4 +81,16 @@ export const clearSearch = () => (dispatch) => {
   dispatch({ type: types.CLEAR_SEARCH })
 }
 
+export const getComicCharacters = (id) => (dispatch) => {
+  dispatch({type: types.COMIC_CHARACTERS_START});
+  getData(buildURL(`comics/${id}/characters`), (responseJson)=>{
+      dispatch({type: types.COMIC_CHARACTERS_FINISH, payload:responseJson});
+  });
+}
 
+export const getComic = (id) =>  (dispatch) => {
+  dispatch({type: types.COMIC_START_LOAD});
+  getData(buildURL(`comics/${id}`), (responseJson)=>{
+      dispatch({type: types.COMIC_FINISH_LOAD, payload:responseJson});
+  });
+};

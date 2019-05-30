@@ -37,18 +37,23 @@ class HomeScreen extends React.Component {
   }
 
   handleClear = () => {
-    
     this.setState({
       searchValue: ''
     }, ()=>{
       this.props.clearSearch()
     })
   }
+  handleNavigate = (characterId, characterName) => {
+    this.props.fetchCharacterComics(characterId);
+    this.props.navigation.dispatch({ type: 'CharacterComics',  payload: { characterName } })
+  }
+
   renderList = () => (
     <CharactersList
       navigation={this.props.navigation}
       characters={this.props.characters}
       isFetching={this.props.isFetching}
+      handleNavigate={this.handleNavigate}
     />
   )
 
@@ -80,10 +85,10 @@ class HomeScreen extends React.Component {
 
 
 const mapStateToProps = (state) => ({
-  isFetching: state.dataReducer.isFetching,
-  characters: state.dataReducer.characters,
-  charactersSearch: state.dataReducer.charactersSearch,
-  isFetchingMore: state.dataReducer.isFetchingMore
+  isFetching: state.DataReducer.isFetching,
+  characters: state.DataReducer.characters,
+  charactersSearch: state.DataReducer.charactersSearch,
+  isFetchingMore: state.DataReducer.isFetchingMore
 });
 
 

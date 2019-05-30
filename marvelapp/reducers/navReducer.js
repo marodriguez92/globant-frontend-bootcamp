@@ -22,7 +22,7 @@ const NavReducer = (state = initialNavState, action) => {
             break;
         case 'ComicDetails':
             nextState = RootNavigator.router.getStateForAction(
-                NavigationActions.navigate({ routeName: 'ComicDetails', params: action.payload }),
+                NavigationActions.navigate({ routeName: 'ComicDetails' }),
                 state
             );
             break;
