@@ -6,6 +6,8 @@ const initialState = {
     characters: [],
     charactersSearch: [],
     isFetchingMoreCharacters: false,
+    isFetchingSearch:false,
+    searchResults:false,
     comic: {
         comicData: {},
         characters: [],
@@ -39,12 +41,14 @@ const dataReducer = (state = initialState, action) => {
     case types.REQUEST_CHARACTERS_SEARCH:
       return {
         ...state,
-        isFetching: true
+        isFetchingSearch: true
       }
     case types.RECEIVE_CHARACTERS_SEARCH:
+      const searchResults = action.payload.lenght!=0 ? true: false
       return {
         ...state,
-        isFetching: false,
+        isFetchingSearch: false,
+        searchResults,
         charactersSearch: action.payload
       }
     case types.REQUEST_MORE_CHARACTERS:

@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
     borderTopWidth: 0,
     borderBottomWidth: 0,
     zIndex:1500,
-    width:'100%'
+    width:'100%',
     
   },
   separator: {
@@ -30,7 +30,8 @@ const styles = StyleSheet.create({
   img:{ 
     width: 20, 
     height: 40 
-  }
+  },
+  
 });
 
 export default styles; 

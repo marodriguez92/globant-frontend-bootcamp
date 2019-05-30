@@ -7,10 +7,10 @@ import {
   TouchableOpacity
 } from 'react-native'
 import styles from './styles'
-import CharacterListSearch from '../CharacterListSearch';
-
 
 const searchBox = (props) => {
+  console.log();
+  const renderNoResult = () => <Text style={styles.noResults} >{'No results found'}</Text>
   return (
     <View style={styles.container}>
       <View style={styles.inputContainer}>
@@ -21,13 +21,10 @@ const searchBox = (props) => {
           onChangeText={props.onHandleSearch}
         />
         <TouchableOpacity style={styles.clearButton} onPress={props.onHandleClear} >
-          <Text style={styles.textButton}>X</Text>
+          <Text style={styles.textButton}>{'X'}</Text>
         </TouchableOpacity>
       </View>
-      <CharacterListSearch
-        navigation={props.navigation}
-        charactersSearch={props.charactersSearch} />
-
+      {!props.searchResults && renderNoResult()}
     </View>
   );
 }

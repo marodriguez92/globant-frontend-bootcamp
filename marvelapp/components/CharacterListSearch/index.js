@@ -26,8 +26,17 @@ const renderSeparator = () => (
   <View style={styles.separator} />
 )
 
+const activateSearchResults =(height,showRender) =>{
+  if(showRender) {
+    return{
+      top:height, 
+      height:'30%'
+    }
+  }
+}
+
 const CharacterListSearch = (props) => (
-  <View style={styles.container}>
+  <View style={[styles.container, activateSearchResults(props.height, !!props.charactersSearch.length)]}>
     <FlatList
       data={props.charactersSearch}
       renderItem={(item) => (
@@ -35,6 +44,7 @@ const CharacterListSearch = (props) => (
       )}
       keyExtractor={(item) => item.id.toString()}
       ItemSeparatorComponent={renderSeparator}
+
     />
   </View>
 );
