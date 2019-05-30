@@ -1,13 +1,13 @@
 import React from 'react';
 import {
   View,
-   FlatList,
+  FlatList,
   ActivityIndicator
 } from 'react-native';
 import styles from './styles';
 import CharacterItem from '../CharacterItem'
 
-const renderItem = ({item}, navigation ) => (
+const renderItem = ({ item }, navigation) => (
   <CharacterItem
     name={item.name}
     description={item.description}
@@ -27,11 +27,15 @@ const renderItem = ({item}, navigation ) => (
   />
 )
 
-const renderFooter = () => (
-  <View style={styles.footer}>
-    <ActivityIndicator animating size="large" />
-  </View>
-)
+const renderFooter = (isFetchingMore) => {
+  if (isFetchingMore) {
+    return (
+      <View>
+        <ActivityIndicator animating={true} size="large" />
+      </View>
+    )
+  }
+}
 
 const renderSeparator = () => (
   <View style={styles.separator} />
@@ -39,14 +43,18 @@ const renderSeparator = () => (
 
 const CharacterList = (props) => (
   <View style={styles.container}>
-      <FlatList
-        data={props.characters}
-        renderItem={(item)=>(
-          renderItem(item, props.navigation)
-        )}
-        keyExtractor={(item) => item.id.toString()}
-        ItemSeparatorComponent={renderSeparator}
-      />
+    <FlatList
+      data={props.characters}
+      renderItem={(item) => (
+        renderItem(item, props.navigation)
+      )}
+      keyExtractor={(item) => item.id.toString()}
+      ItemSeparatorComponent={renderSeparator}
+      onEndReached={props.onEndReached}
+      onEndReachedThreshold={0.5}
+      ItemFooterComponent={()=>{renderFooter(props.isFetchingMore)}}
+      
+    />
   </View>
 )
 

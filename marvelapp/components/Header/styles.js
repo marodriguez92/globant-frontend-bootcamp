@@ -2,11 +2,12 @@ import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
     header: {
-        height: '20%',
         backgroundColor: '#e91c1c', 
         flexDirection: 'row',
         justifyContent: 'center',
-        alignItems: 'flex-end'
+        alignItems: 'flex-end',
+        paddingBottom: 15,
+        paddingTop:30
     },
     headerTitle: {
         color: 'white',
@@ -15,6 +16,8 @@ const styles = StyleSheet.create({
         fontWeight: '900',
         includeFontPadding: false,
         transform: [{ scaleY: 1.4 }]
+    },
+    container:{
     }
   });
   
