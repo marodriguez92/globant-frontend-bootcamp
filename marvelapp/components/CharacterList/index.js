@@ -32,6 +32,7 @@ const renderSeparator = () => (
   <View style={styles.separator} />
 )
 
+
 const CharacterList = (props) => {
   if (props.isFetching) {
     return (
@@ -51,11 +52,12 @@ const CharacterList = (props) => {
         ItemSeparatorComponent={renderSeparator}
         onEndReached={props.onEndReached}
         onEndReachedThreshold={0.5}
-        ItemFooterComponent={()=>{renderFooter(props.isFetchingMore)}}
+       ListFooterComponent={renderFooter(props.isFetchingMore)}
         
       />
     </View>
   )
 }
+
 
 export default CharacterList

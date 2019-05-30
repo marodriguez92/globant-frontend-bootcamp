@@ -27,7 +27,10 @@ const styles = StyleSheet.create({
     alignContent: 'space-between',
     alignItems: 'flex-start'
   },
-  
+  img:{ 
+    width: 20, 
+    height: 40 
+  }
 });
 
 export default styles; 

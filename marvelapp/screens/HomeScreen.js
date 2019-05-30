@@ -53,7 +53,12 @@ class HomeScreen extends React.Component {
       navigation={this.props.navigation}
       characters={this.props.characters}
       isFetching={this.props.isFetching}
+
       handleNavigate={this.handleNavigate}
+
+      isFetchingMore={this.props.isFetchingMore}
+      onEndReached={this.infiniteScroll}
+
     />
   )
 
