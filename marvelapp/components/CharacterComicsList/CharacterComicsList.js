@@ -7,7 +7,7 @@ import {
 import ComicItem from '../ComicItem/ComicItem';
 import styles from './styles';
 
-const CharacterComicsList = ({ navigation, isFetching, characterComics }) => {
+const CharacterComicsList = ({ handleNavigate, isFetching, characterComics }) => {
     if (isFetching) {
         return (
             <View style={styles.activityIndicatorContainer}>
@@ -21,8 +21,9 @@ const CharacterComicsList = ({ navigation, isFetching, characterComics }) => {
                     data={characterComics}
                     renderItem={({ item }) => (
                         <ComicItem
-                            navigation={navigation}
+                            handleNavigate={handleNavigate}
                             comicUrl={`${item.thumbnail.path}.${item.thumbnail.extension}`}
+                            id={item.id}
                         />
                     )}
                     keyExtractor={(item) => item.id.toString()}

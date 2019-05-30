@@ -8,8 +8,16 @@ import {
 } from 'react-native';
 
 const CharacterItem = (props) => (
-    <TouchableOpacity onPress={props.onPress} style={styles.container}>
-      <Image source={{ uri: `${props.img}.${props.extension}` }} style={styles.img} />
+
+    <TouchableOpacity 
+    style={styles.container}
+    onPress={()=>{
+      props.handleNavigate(props.id, props.name)
+    }}
+    >
+   
+  <Image source={{ uri: `${props.img}.${props.extension}` }} style={styles.img} />
+
       <View style={styles.info}>
         <Text style={styles.title}>
           {props.name}

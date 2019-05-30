@@ -7,23 +7,14 @@ import {
 import styles from './styles';
 import CharacterItem from '../CharacterItem'
 
-const renderItem = ({ item }, navigation) => (
+const renderItem = ({ item }, handleNavigate) => (
   <CharacterItem
     name={item.name}
+    id={item.id}
     description={item.description}
     img={item.thumbnail.path}
     extension={item.thumbnail.extension} 
-    onPress={()=>{      
-      navigation.dispatch(
-        {
-          type: 'CharacterComics', 
-          payload: {
-            characterId: item.id, 
-            characterName: item.name
-          } 
-        }
-      )
-    }}
+    handleNavigate={handleNavigate}
   />
 )
 
@@ -41,21 +32,32 @@ const renderSeparator = () => (
   <View style={styles.separator} />
 )
 
-const CharacterList = (props) => (
-  <View style={styles.container}>
-    <FlatList
-      data={props.characters}
-      renderItem={(item) => (
-        renderItem(item, props.navigation)
-      )}
-      keyExtractor={(item) => item.id.toString()}
-      ItemSeparatorComponent={renderSeparator}
-      onEndReached={props.onEndReached}
-      onEndReachedThreshold={0.5}
-      ListFooterComponent={renderFooter(props.isFetchingMore)}
-      
-    />
-  </View>
-)
+
+const CharacterList = (props) => {
+  if (props.isFetching) {
+    return (
+        <View style={styles.activityIndicatorContainer}>
+            <ActivityIndicator animating={true} size="large"/>
+        </View>
+    );
+  }
+  return(
+    <View style={styles.container}>
+      <FlatList
+        data={props.characters}
+        renderItem={(item) => (
+          renderItem(item, props.handleNavigate)
+        )}
+        keyExtractor={(item) => item.id.toString()}
+        ItemSeparatorComponent={renderSeparator}
+        onEndReached={props.onEndReached}
+        onEndReachedThreshold={0.5}
+       ListFooterComponent={renderFooter(props.isFetchingMore)}
+        
+      />
+    </View>
+  )
+}
+
 
 export default CharacterList
