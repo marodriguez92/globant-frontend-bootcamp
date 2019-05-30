@@ -6,6 +6,7 @@ import {
 } from 'react-native';
 import ComicItem from '../ComicItem/ComicItem';
 import styles from './styles';
+import PropTypes from 'prop-types';
 
 const CharacterComicsList = ({ handleNavigate, isFetching, characterComics }) => {
     if (isFetching) {
@@ -32,6 +33,12 @@ const CharacterComicsList = ({ handleNavigate, isFetching, characterComics }) =>
             </View>
         );
     }
+}
+
+CharacterComicsList.propTypes = {
+    handleNavigate: PropTypes.func.isRequired, 
+    isFetching: PropTypes.bool.isRequired, 
+    characterComics: PropTypes.array.isRequired
 }
 
 export default CharacterComicsList;

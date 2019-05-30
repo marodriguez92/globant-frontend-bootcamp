@@ -7,7 +7,8 @@ import {
   Image,
   Modal
 } from 'react-native'
-import styles from './styles'
+import styles from './styles';
+import PropTypes from 'prop-types';
 
 const renderItem = ({ item }, navigation) => (
   <TouchableOpacity onPress={() => {
@@ -36,6 +37,11 @@ const CharacterListSearch = (props) => (
       ItemSeparatorComponent={renderSeparator}
     />
   </View>
-)
+);
+
+CharacterListSearch.propTypes = {
+  charactersSearch: PropTypes.array.isRequired,
+  navigation: PropTypes.object.isRequired
+}
 
 export default CharacterListSearch

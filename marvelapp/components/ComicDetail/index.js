@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 import styles from './style';
+import PropTypes from 'prop-types';
 
 const renderDetail = (title, content) => {
     const newContent = Array.isArray(content) ? content.map( writer => writer.name ).join(', ') : content;
@@ -28,6 +29,10 @@ const ComicDetail = (props) => {
             {renderDetail( 'Summary: ', summaryFiltered )}
         </View>
     )
+}
+
+ComicDetail.propTypes = {
+    comic: PropTypes.object.isRequired,
 }
 
 export default ComicDetail;

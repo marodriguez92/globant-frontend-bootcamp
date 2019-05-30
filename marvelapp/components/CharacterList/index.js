@@ -5,7 +5,8 @@ import {
   ActivityIndicator
 } from 'react-native';
 import styles from './styles';
-import CharacterItem from '../CharacterItem'
+import CharacterItem from '../CharacterItem';
+import PropTypes from 'prop-types';
 
 const renderItem = ({ item }, handleNavigate) => (
   <CharacterItem
@@ -59,5 +60,12 @@ const CharacterList = (props) => {
   )
 }
 
+CharacterList.propTypes = {
+  isFetching: PropTypes.bool.isRequired,
+  characters: PropTypes.array.isRequired,
+  handleNavigate: PropTypes.func.isRequired,
+  onEndReached: PropTypes.func.isRequired,
+  isFetchingMore: PropTypes.bool.isRequired
+}
 
 export default CharacterList

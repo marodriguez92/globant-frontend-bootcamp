@@ -5,6 +5,7 @@ import {
     TouchableOpacity
 } from 'react-native';
 import styles from './styles';
+import PropTypes from 'prop-types';
 
 const ComicItem = ({ handleNavigate, comicUrl, id }) => {
     return (
@@ -21,5 +22,11 @@ const ComicItem = ({ handleNavigate, comicUrl, id }) => {
         </View>
     )
 } 
+
+ComicItem.propTypes = {
+    handleNavigate: PropTypes.func.isRequired,
+    comicUrl: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired
+}
 
 export default ComicItem;
