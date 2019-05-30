@@ -4,7 +4,8 @@ import {
   FlatList,
   Text,
   TouchableOpacity,
-  Image
+  Image,
+  Modal
 } from 'react-native'
 import styles from './styles'
 
@@ -14,7 +15,7 @@ const renderItem = ({ item }, navigation) => (
   }}
   >
     <View style={styles.item}>
-      <Image source={{ uri: `${item.thumbnail.path}.${item.thumbnail.extension}` }} style={{ width: 20, height: 40 }} />
+      <Image source={{ uri: `${item.thumbnail.path}.${item.thumbnail.extension}` }} style={styles.img} />
       <Text style={styles.title}>{item.name}</Text>
     </View>
   </TouchableOpacity>
