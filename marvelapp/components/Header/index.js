@@ -1,13 +1,27 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 import styles from './styles';
+import SubHeader from '../SubHeader'
 
-const Header = () => {
-    return (
-        <View style={styles.header}>
-            <Text style={styles.headerTitle}> MARVEL </Text>
-        </View>
-    )
+const Header = (props) => {
+  return (
+    <View style={styles.container}>
+      <View style={styles.header}>
+        <Text style={styles.headerTitle}> MARVEL </Text>
+      </View>
+      <SubHeader
+        navigation={props.navigation}
+        title={props.title}
+        subtitle={props.subtitle}
+        handleSearch={props.handleSearch}
+        handleClear={props.handleClear}
+        renderSearchBar={props.renderSearchBar}
+        charactersSearch={props.charactersSearch}
+        searchValue={props.searchValue}
+      />
+      
+    </View>
+  )
 }
 
 export default Header;
