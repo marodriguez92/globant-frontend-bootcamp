@@ -9,7 +9,7 @@ import {
 
 const CharacterItem = (props) => (
     <TouchableOpacity onPress={props.onPress} style={styles.container}>
-      <Image source={{ uri: `${props.img}.${props.extension}` }} style={{ width: 100, height: 100 }} />
+      <Image source={{ uri: `${props.img}.${props.extension}` }} style={styles.img} />
       <View style={styles.info}>
         <Text style={styles.title}>
           {props.name}
