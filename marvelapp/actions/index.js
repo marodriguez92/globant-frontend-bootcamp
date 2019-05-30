@@ -4,8 +4,6 @@ const credentials = 'ts=thesoer&apikey=bc633c3098498c482c783ac62a84c855&hash=802
 const buildURL = endPoint => 
     `https://gateway.marvel.com/v1/public/${endPoint}?ts=thesoer&apikey=bc633c3098498c482c783ac62a84c855&hash=802bad3d59d5bdef698ed9e3da658526`
     
-
-
 const getData = (url, callback) => {
         fetch(url)
             .then((response) => response.json())

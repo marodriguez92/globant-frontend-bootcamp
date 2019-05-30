@@ -4,7 +4,7 @@ import { View, Text } from 'react-native';
 import styles from './styles';
 import SearchBox from '../Search'
 
-const SubHeader = ({ navigation, title, subtitle, handleSearch, charactersSearch, searchValue, handleClear, renderSearchBar }) => {
+const SubHeader = ({ searchResults, navigation, title, subtitle, handleSearch, charactersSearch, searchValue, handleClear, renderSearchBar }) => {
 
   const dataInfo = () => (
     <View style={styles.subHeader}>
@@ -23,6 +23,7 @@ const SubHeader = ({ navigation, title, subtitle, handleSearch, charactersSearch
         charactersSearch={charactersSearch}
         searchValue={searchValue}
         onHandleClear={handleClear}
+        searchResults={searchResults}
       />
     </View>
   )

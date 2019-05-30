@@ -5,7 +5,9 @@ import SubHeader from '../SubHeader'
 
 const Header = (props) => {
   return (
-    <View style={styles.container}>
+    <View 
+    onLayout={props.onLayout}
+    style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.headerTitle}> MARVEL </Text>
       </View>
@@ -18,6 +20,7 @@ const Header = (props) => {
         renderSearchBar={props.renderSearchBar}
         charactersSearch={props.charactersSearch}
         searchValue={props.searchValue}
+        searchResults={props.searchResults}
       />
       
     </View>

@@ -9,12 +9,14 @@ import {
   ActivityIndicator
 } from 'react-native';
 import SearchBox from '../components/Search'
+import CharacterListSearch from '../components/CharacterListSearch';
 
 class HomeScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       searchValue: '',
+      heightHeader:0
     };
   }
   componentWillMount() {
@@ -53,9 +55,7 @@ class HomeScreen extends React.Component {
       navigation={this.props.navigation}
       characters={this.props.characters}
       isFetching={this.props.isFetching}
-
       handleNavigate={this.handleNavigate}
-
       isFetchingMore={this.props.isFetchingMore}
       onEndReached={this.infiniteScroll}
 
@@ -70,7 +70,14 @@ class HomeScreen extends React.Component {
     </View>
   )
 
+  onLayout = (event) => {
+    const {height} = event.nativeEvent.layout
+    this.setState({
+      height
+    })
+  }
   render() {
+   
     return (
       <View style={{ flex: 1, justifyContent: 'flex-start' }}>
         <Header
@@ -79,8 +86,16 @@ class HomeScreen extends React.Component {
           charactersSearch={this.props.charactersSearch}
           renderSearchBar={true}
           searchValue={this.state.searchValue}
+          onLayout={this.onLayout}
+          searchResults={this.props.searchResults}
         />
         {this.props.isFetching ? this.renderActivityIndicator() : this.renderList()}
+        <CharacterListSearch
+          navigation={this.props.navigation}
+          charactersSearch={this.props.charactersSearch} 
+          height={this.state.height}
+          isFetchingSearch={this.props.isFetchingSearch}
+        />
       </View>
     )
   }
@@ -93,7 +108,9 @@ const mapStateToProps = (state) => ({
   isFetching: state.DataReducer.isFetching,
   characters: state.DataReducer.characters,
   charactersSearch: state.DataReducer.charactersSearch,
-  isFetchingMore: state.DataReducer.isFetchingMore
+  isFetchingMore: state.DataReducer.isFetchingMore,
+  isFetchingSearch: state.DataReducer.isFetchingSearch,
+  searchResults: state.DataReducer.searchResults
 });
 
 

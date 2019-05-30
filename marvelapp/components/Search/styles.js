@@ -40,6 +40,10 @@ const styles = StyleSheet.create({
   },
   textButton:{
     color:'white'
+  },
+  noResults:{
+    color: 'white',
+    alignSelf: 'center',
   }
  
 });
