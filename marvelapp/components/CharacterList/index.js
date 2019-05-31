@@ -61,11 +61,11 @@ const CharacterList = (props) => {
 }
 
 CharacterList.propTypes = {
-  isFetching: PropTypes.bool.isRequired,
-  characters: PropTypes.array.isRequired,
-  handleNavigate: PropTypes.func.isRequired,
-  onEndReached: PropTypes.func.isRequired,
-  isFetchingMore: PropTypes.bool.isRequired
+  isFetching: PropTypes.bool,
+  characters: PropTypes.array,
+  handleNavigate: PropTypes.func,
+  onEndReached: PropTypes.func,
+  isFetchingMore: PropTypes.bool
 }
 
 export default CharacterList

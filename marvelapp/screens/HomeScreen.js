@@ -16,7 +16,7 @@ class HomeScreen extends React.Component {
     super(props);
     this.state = {
       searchValue: '',
-      heightHeader:0
+      height:0
     };
   }
   componentWillMount() {
